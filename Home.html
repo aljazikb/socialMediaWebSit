@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <!-- IMPORT BOOTSTRAP -->
+    <!-- IMPORT BOOTSTRAP & STYLE -->
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="./node_modules/axios/dist/axios.min.js"></script>
@@ -19,6 +19,37 @@
 </style>
 
 <body>
+    <!--------------MODALS------------>
+    <!-----------LOGIN MODALS------------>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">User name:</label>
+                <input type="text" class="form-control" id="usernameinput">
+            </div>
+            <div class="mb-3">
+                <label for="message-text" class="col-form-label">password:</label>
+                <input type="password" class="form-control" id="passwordinput">
+            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="loginBtnClicked()">Login</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-----------////LOGIN MODALS///------------>
+    <!--------------////MODALS///------------>
+
 
     <!-- NAVIGATTION BAR CONT -->
     <div class="container ">
@@ -41,7 +72,7 @@
                 </li>
             </ul>
                 <div class="d-flex  justify-content-end">
-                    <button type="button" class="btn btn-success mx-2">Login</button>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success mx-2">Login</button>
                     <button type="button" class="btn btn-success">Register</button>
                 </div>
         
@@ -96,73 +127,6 @@
                 </div>
             </div>
             <!-- //POST//-->
-
-             <!--POST-->
-            <div class="card shadow-lg my-5">
-
-                <h5 class="card-header ">
-                    <img class="rounded-circle border border-2" src="./progile-pics/starry-night-cypress-1.png" alt="" style="width :40px; height: 40px; ">
-                    <b> @aljazi</b>
-                </h5>
-                <div class="card-body">
-                    <h5 class="card-title">
-                     <img class="w-100" src="./placeholders/Screenshot_16-1-2026_0272_.jpeg" alt="" >
-                     <h6 style="color: gray;" class="mt-1 ">2 min ago</h6>
-                    </h5>
-                   <h5>
-                    Hello world
-                   </h5>
-                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim cupiditate voluptatibus blanditiis delectus ut ab? Quibusdam voluptatum optio hic ea sequi reiciendis necessitatibus. Enim magni fuga molestias voluptates iste natus.
-                   </p>
-                   <hr>
-
-                   <div >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                             <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
-                        </svg>
-                        <span> 
-                            (3) Comments
-                        </span>
-                   </div>
-
-                    
-                </div>
-            </div>
-            <!-- //POST//-->
-              <!--POST-->
-            <div class="card shadow-lg my-5">
-
-                <h5 class="card-header ">
-                    <img class="rounded-circle border border-2" src="./progile-pics/starry-night-cypress-1.png" alt="" style="width :40px; height: 40px; ">
-                    <b> @aljazi</b>
-                </h5>
-                <div class="card-body">
-                    <h5 class="card-title">
-                     <img class="w-100" src="./placeholders/Screenshot_16-1-2026_0272_.jpeg" alt="" >
-                     <h6 style="color: gray;" class="mt-1 ">2 min ago</h6>
-                    </h5>
-                   <h5>
-                    Hello world
-                   </h5>
-                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim cupiditate voluptatibus blanditiis delectus ut ab? Quibusdam voluptatum optio hic ea sequi reiciendis necessitatibus. Enim magni fuga molestias voluptates iste natus.
-                   </p>
-                   <hr>
-
-                   <div >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                             <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
-                        </svg>
-                        <span> 
-                            (3) Comments
-                        </span>
-                   </div>
-
-                    
-                </div>
-            </div>
-            <!-- //POST//-->
              
         </div>
         <!-- // POSTS // -->
@@ -177,54 +141,6 @@
 </body>
 
 
-<script>
 
-    axios.get("https://tarmeezacademy.com/api/v1/posts/1")
-    .then((response)=>{
-
-    let ob=response.data.data
-    
-    document.getElementById("posts").innerHTML=`
-
-     <div class="card shadow-lg my-5">
-
-                <h5 class="card-header ">
-                    <img class="rounded-circle border border-2" src="${ob.profile_image}" alt="" style="width :40px; height: 40px; ">
-                    <b> @${ob.name}</b>
-                </h5>
-                <div class="card-body">
-                    <h5 class="card-title">
-                     <img class="w-100" src="${ob.image}" alt="" >
-                     <h6 style="color: gray;" class="mt-1 ">2 min ago</h6>
-                    </h5>
-                   <h5>
-                    Hello world
-                   </h5>
-                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim cupiditate voluptatibus blanditiis delectus ut ab? Quibusdam voluptatum optio hic ea sequi reiciendis necessitatibus. Enim magni fuga molestias voluptates iste natus.
-                   </p>
-                   <hr>
-
-                   <div >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                             <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
-                        </svg>
-                        <span> 
-                            (3) Comments
-                        </span>
-                   </div>
-
-                    
-                </div>
-            </div>
-    `
-
-
-    console.log(response.data.data)
-
-    }).catch((error)=>{;
-    console.error()
-    })
-
-</script>
+<script src="Home.js"></script>
 </html>
