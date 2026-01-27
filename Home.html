@@ -19,9 +19,14 @@
 </style>
 
 <body>
+
+    <!---------------ALERTS-------------->
+    <div id="liveAlertPlaceholder bg-primary" style="position: fixed;z-index: 9999999;width: 300%; bottom: 0;right: 0;"></div>
+
+    <!----------------// ALERTS ////-->
     <!--------------MODALS------------>
     <!-----------LOGIN MODALS------------>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="LoginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
@@ -42,7 +47,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" onclick="loginBtnClicked()">Login</button>
+            <button id="rr" type="button" class="btn btn-primary" onclick="loginBtnClicked()">Login</button>
         </div>
         </div>
     </div>
@@ -72,9 +77,16 @@
                 </li>
             </ul>
                 <div class="d-flex  justify-content-end">
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success mx-2">Login</button>
-                    <button type="button" class="btn btn-success">Register</button>
+                    <button id="login-btu"type="button" data-bs-toggle="modal" data-bs-target="#LoginModal" class="btn btn-success mx-2">Login</button>
+                    <button id="Register-btu"type="button" class="btn btn-success">Register</button>
+                   
                 </div>
+
+                <div class="d-flex  justify-content-end">
+                    <button onclick="longout()" id="logout-btu"type="button" data-bs-toggle="modal" class="btn btn-outline-danger mx-2">Logout</button>
+                   
+                </div>
+                  
         
             </div>
         </div>

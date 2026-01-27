@@ -1,5 +1,6 @@
 
-    axios.get("https://tarmeezacademy.com/api/v1/posts?limit=5")
+   setupUI()
+   axios.get("https://tarmeezacademy.com/api/v1/posts?limit=5")
     .then((response)=>{
 
     let obs=response.data.data
@@ -71,9 +72,67 @@
        
        axios.post("https://tarmeezacademy.com/api/v1/login",params)
        .then((res)=>{
-        console.log(res.data)
-       })
+            localStorage.setItem("token",res.data.token)
+            localStorage.setItem("currentUser",JSON.stringify(res.data.user))
+
+            const modal= document.getElementById("LoginModal")
+            const modalInsrance = bootstrap.Modal.getInstance(modal)
+            modalInsrance.hide()
+            showSuccessAlert()
+
+        })
        console.log(UserName,password)
         
     }
+
+showSuccessAlert()
+    function showSuccessAlert(){
+        
+
+        const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+        const appendAlert = (message, type) => {
+        const wrapper = document.createElement('div')
+        wrapper.innerHTML = [
+            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+            `   <div>${message}</div>`,
+            '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+            '</div>'
+        ].join('')
+
+        alertPlaceholder.append(wrapper)  
+        appendAlert('Nice, you triggered this alert message!', 'success')
+        }
+
+    }
+
+    function setupUI(){
+        const token=localStorage.getItem("token")
+
+        const loginBtn=document.getElementById("login-btu")
+        const regester=document.getElementById("Register-btu")
+       const logout = document.getElementById("logout-btu") 
+
+        if(token ==null){ //user is a guest
+           loginBtn.style.visibility="visible"
+            regester.style.visibility="visible"
+            logout.style.visibility="hidden"
+           
+        }else{
+            loginBtn.style.visibility="hidden"
+            regester.style.visibility="hidden"
+            logout.style.visibility="visible"
+            
+
+        }
+
+    }
+
+    function longout(){ 
+        localStorage.removeItem("token")
+        localStorage.removeItem("currentUser")
+        alert("logout ")
+
+    }
+
+    
     
