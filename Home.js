@@ -1,4 +1,5 @@
 
+
    setupUI()
    axios.get("https://tarmeezacademy.com/api/v1/posts?limit=5")
     .then((response)=>{
@@ -202,6 +203,3 @@
 
 
    
-
-    
-    
