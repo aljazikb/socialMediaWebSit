@@ -1,5 +1,5 @@
 
-   setupUI()
+   
    axios.get("https://tarmeezacademy.com/api/v1/posts?limit=5")
     .then((response)=>{
 
@@ -61,6 +61,7 @@
 
 
     function loginBtnClicked(){
+
        const UserName= document.getElementById("usernameinput").value
        const password=document.getElementById("passwordinput").value
 
@@ -78,14 +79,15 @@
             const modal= document.getElementById("LoginModal")
             const modalInsrance = bootstrap.Modal.getInstance(modal)
             modalInsrance.hide()
-            showSuccessAlert()
+            alert("user logged in successfully")
+            setupUI()
 
         })
        console.log(UserName,password)
         
     }
 
-showSuccessAlert()
+
     function showSuccessAlert(){
         
 
@@ -105,24 +107,21 @@ showSuccessAlert()
 
     }
 
+    
     function setupUI(){
         const token=localStorage.getItem("token")
 
-        const loginBtn=document.getElementById("login-btu")
-        const regester=document.getElementById("Register-btu")
-       const logout = document.getElementById("logout-btu") 
+        const loggedIndiv=document.getElementById("loggedIndiv")
+        const logout = document.getElementById("logoutdiv") 
 
         if(token ==null){ //user is a guest
-           loginBtn.style.visibility="visible"
-            regester.style.visibility="visible"
-            logout.style.visibility="hidden"
+           loggedIndiv.style.setProperty("display","flex","important")
+            logout.style.setProperty("display","none","important")
            
         }else{
-            loginBtn.style.visibility="hidden"
-            regester.style.visibility="hidden"
-            logout.style.visibility="visible"
+            loggedIndiv.style.setProperty("display","none","important")
+            logout.style.setProperty("display","flex","important")
             
-
         }
 
     }
@@ -131,6 +130,7 @@ showSuccessAlert()
         localStorage.removeItem("token")
         localStorage.removeItem("currentUser")
         alert("logout ")
+        setupUI()
 
     }
 
