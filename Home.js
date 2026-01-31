@@ -10,7 +10,7 @@
 
     for(let s of obs){
     
-    console.log("inside the loop")
+    
 
     let  postTitle=""
     if(s.title!=null){
@@ -148,6 +148,35 @@
     }
 
 
+    function CreateNewPostBtnClicked(){
+
+        const title= document.getElementById("Post-titleInput").value
+        const body =document.getElementById("PostTitleInput").value
+        const Image=document.getElementById("Post-ImageInput").files[0]
+        const token=localStorage.getItem("token")
+        
+        //Type of forDate instead of JSON object. Beacuse we used file of image
+        let forDate=new FormData()
+        forDate.append("body",body)
+        forDate.append("title",title)
+        forDate.append("image",Image)
+
+       
+       axios.post("https://tarmeezacademy.com/api/v1/posts", forDate,{
+            headers:{
+                "Content-type": "multipart/form-data",
+                "authorization":`Bearer ${token}`
+            }
+       })
+       .then((res)=>{
+           console.log(res)
+
+        })
+     
+    
+    }
+
+
    function showAlert(customMessage,type) {
     const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 
@@ -181,13 +210,18 @@
 
     const loggedIndiv = document.getElementById("loggedIndiv");
     const logout = document.getElementById("logoutdiv");
+    const Post=document.getElementById("AddButton");
 
     if (token == null) { // user is a guest
         loggedIndiv.style.setProperty("display", "flex", "important");
         logout.style.setProperty("display", "none", "important");
+        Post.style.setProperty("display", "none", "important");
+
     } else { // user is logged in
         loggedIndiv.style.setProperty("display", "none", "important");
         logout.style.setProperty("display", "flex", "important");
+        Post.style.setProperty("display", "flex", "important");
+
     }
 }
 
@@ -200,6 +234,8 @@
         setupUI()
 
     }
+
+
 
 
    
