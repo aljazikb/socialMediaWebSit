@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+     <!-- IMPORT BOOTSTRAP & STYLE -->
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+</head>
+
+
+
+<body>
+
+
+     <!---------------ALERTS-------------->
+    <div id="liveAlertPlaceholder" class="show fade" style="position: fixed; z-index: 999999;width: 30%;bottom: 0; right: 0;"></div>
+
+
+     <!--------------MODALS------------>
+    <!-----------LOGIN MODALS------------>
+        <div class="modal fade" id="LoginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">User name:</label>
+                <input type="text" class="form-control" id="usernameinput" value="aljazi">
+            </div>
+            <div class="mb-3">
+                <label for="message-text" class="col-form-label">password:</label>
+                <input type="password" class="form-control" id="passwordinput" value="123456">
+            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button id="rr" type="button" class="btn btn-primary" onclick="loginBtnClicked()">Login</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <!-----------////Post MODALS///------------>
+         <div class="modal fade" id="Create-post-Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Create A New Post</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Title:</label>
+                <input type="text" class="form-control" id="Post-titleInput" value="al">
+            </div>
+            <div class="mb-3">
+               <textarea id="PostTitleInput" style="width: 100%; height: 100px; border-color: gray; border-radius: 10px; resize: none;" >
+
+               </textarea>
+            </div>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Image:</label>
+                <input type="file" class="form-control" id="Post-ImageInput" >
+            </div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button id="rr" type="button" class="btn btn-primary" onclick="CreateNewPostBtnClicked()">Create</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-----------////Post MODALS///------------>
+
+
+    <!-----------REGISTER MODALS------------>
+        <div class="modal fade" id="RegisterModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Register A New User</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Profile image:</label>
+                <input type="file" class="form-control" id="RegisterImageinput" >
+            </div>
+
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">UserName:</label>
+                <input type="text" class="form-control" id="RegisterUsernameinput" value="aljazi">
+            </div>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Name:</label>
+                <input type="text" class="form-control" id="RegisterNameinput" value="aljazi">
+            </div>
+
+            <div class="mb-3">
+                <label for="message-text" class="col-form-label">password:</label>
+                <input type="password" class="form-control" id="RegisterPasswordinput" value="123456">
+            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button id="rr" type="button" class="btn btn-primary" onclick="RegisterBtnClicked()">Register</button>
+        </div>
+        </div>
+    </div>
+        </div>
+    <!-----------////REGISTER MODALS///------------>
+    <!--------------////MODALS///------------>
+
+    <!-- NAVIGATTION BAR CONT -->
+        <div class="container ">
+            <!-- فصلت البار عن الباقي -->
+    <div class="d-flex justify-content-center">
+        <div class=" col-9">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-lg rounded pt-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">JAZ</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                    </li>
+                </ul>
+                    <div id="loggedIndiv" class="d-flex  justify-content-end">
+                        <button id="login-btu"type="button" data-bs-toggle="modal" data-bs-target="#LoginModal" class="btn btn-success mx-2">Login</button>
+                        <button id="Register-btu"type="button" data-bs-toggle="modal" data-bs-target="#RegisterModal"  class="btn btn-success">Register</button>
+                    
+                    </div>
+
+                    <div id="logoutdiv" class="d-flex  justify-content-end" style="display: none;align-items: center;">
+                        <img id="navImage" class="rounded-circle" style="width: 40px; height: 40px;" src="./placeholders/Screenshot_16-1-2026_0272_.jpeg">
+                        <b id="navUserName">@</b>
+
+                        <button onclick="logout()" id="logout-btu"type="button" data-bs-toggle="modal" class="btn btn-outline-danger mx-2">Logout</button>
+                    
+                    </div>
+                    
+            
+                </div>
+            </div>
+            </nav>
+        </div>
+    </div>
+        </div>
+        <!-- // NAVIGATTION BAR CONT // -->
+    <!--Na-->
+</body>
+
+<script src="Home.js" ></script>
+</html>
