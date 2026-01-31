@@ -251,14 +251,21 @@
     const Post=document.getElementById("AddButton");
 
     if (token == null) { // user is a guest
+        
+        if(Post!=null){
+             Post.style.setProperty("display", "none", "important");
+        }
         loggedIndiv.style.setProperty("display", "flex", "important");
         logout.style.setProperty("display", "none", "important");
-        Post.style.setProperty("display", "none", "important");
+       
 
     } else { // user is logged in
+        if(Post!=null){
+              Post.style.setProperty("display", "flex", "important");
+        }
         loggedIndiv.style.setProperty("display", "none", "important");
         logout.style.setProperty("display", "flex", "important");
-        Post.style.setProperty("display", "flex", "important");
+       
          // <b id="navUserName">@al</b>//
             const user=getCurrentUser()
         document.getElementById("navUserName").innerHTML= user.username
@@ -266,6 +273,7 @@
 
         }
     }
+
     function getCurrentUser(){
 
         let user=null
