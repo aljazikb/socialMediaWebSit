@@ -114,6 +114,11 @@
         <div class="modal-body">
             <form>
             <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Profile image:</label>
+                <input type="file" class="form-control" id="RegisterImageinput" >
+            </div>
+
+            <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">UserName:</label>
                 <input type="text" class="form-control" id="RegisterUsernameinput" value="aljazi">
             </div>
@@ -173,8 +178,11 @@
                    
                 </div>
 
-                <div id="logoutdiv" class="d-flex  justify-content-end" style="display: none;">
-                    <button onclick="longout()" id="logout-btu"type="button" data-bs-toggle="modal" class="btn btn-outline-danger mx-2">Logout</button>
+                <div id="logoutdiv" class="d-flex  justify-content-end" style="display: none;align-items: center;">
+                    <img id="navImage" class="rounded-circle" style="width: 40px; height: 40px;" src="./placeholders/Screenshot_16-1-2026_0272_.jpeg">
+                    <b id="navUserName">@</b>
+
+                    <button onclick="logout()" id="logout-btu"type="button" data-bs-toggle="modal" class="btn btn-outline-danger mx-2">Logout</button>
                    
                 </div>
                   
