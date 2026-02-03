@@ -286,6 +286,7 @@
                 let commentsContent=``
 
                 for(comment of comments){
+
                     commentsContent +=`
                     <!--COMMENT-->
                 <div class="p-3"  style="background-color: rgb(164, 162, 162);">
@@ -305,7 +306,7 @@
 
                 </div>
                 <!-- // COMMENT ///-->
-                    
+
                     `
 
                 }
@@ -349,6 +350,11 @@
 
                  </div>
                 <!-- // COMMENTBODY //---->
+
+                 <div class="input-group mb-3" id="add-comment-div">
+                    <input id="comment-input" type="text" placeholder="add you comment here.." class="form-control">
+                    <button class="btn btn-outline-primary" type="btton">send</button>
+                 </div>
 
             </div>
             <!-- //POST//-->
