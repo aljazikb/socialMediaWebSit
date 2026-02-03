@@ -353,7 +353,7 @@
 
                  <div class="input-group mb-3" id="add-comment-div">
                     <input id="comment-input" type="text" placeholder="add you comment here.." class="form-control">
-                    <button class="btn btn-outline-primary" type="btton">send</button>
+                    <button class="btn btn-outline-primary" type="btton" onclick="createCommentClicked()">send</button>
                  </div>
 
             </div>
@@ -371,6 +371,30 @@
    }
 
     getPost()
+
+    function createCommentClicked(){
+        let commentBody=document.getElementById("comment-input").value
+        let params={
+            "body":commentBody,
+            
+        }
+        let token=localStorage.getItem("token")
+
+        axios.post(`https://tarmeezacademy.com/api/v1/posts/${id}/comments`,params,{
+            headers:{
+                "authorization":`Bearer ${token}`
+            }
+        }).then((res)=>{
+            console.log(res.data)
+            showAlert("comment has been created successfully","success")
+            getPost()
+        }).catch((error)=>{
+            const er=error.response.data.message
+            showAlert(er,"danger")
+        })
+
+        
+    }
 
 
 </script>
