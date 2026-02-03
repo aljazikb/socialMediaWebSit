@@ -1,7 +1,7 @@
 
 
    setupUI()
-   getPost()
+   
 
    let currentPage=1
    let lastPage=1
@@ -13,14 +13,14 @@
      
      if(endOfPage && currentPage<lastPage){
  
-        getPost(currentPage+1,false)
+        getPosts(currentPage+1,false)
         currentPage++ 
      }
      console.log(endOfPage)
    })
     // ========infinit scroll============= //
 
-
+/*
    function getPost( page = 1, reload=true ){
 
         axios.get(`https://tarmeezacademy.com/api/v1/posts?limit=5&page=${page}`)
@@ -103,7 +103,7 @@
             console.error("error")
             })
 
-   }
+   }*/
     function loginBtnClicked(){
 
        const UserName= document.getElementById("usernameinput").value
