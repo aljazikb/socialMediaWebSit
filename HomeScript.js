@@ -27,7 +27,7 @@
                    if(isMyPost){
                       butttonContent=
                       `
-                      <button class="btn btn-danger" style="margin-left:5px ;float:right" onclick="deletepostbtnclicked('${encodeURIComponent(JSON.stringify(s))}')">delete</button>
+                      <button class="btn btn-danger" style="margin-left:5pxs ;float:right" onclick="deletepostbtnclicked('${encodeURIComponent(JSON.stringify(s))}')">delete</button>
 
                       <button class="btn btn-secondary" style="float:right" onclick="editpostbtnclicked('${encodeURIComponent(JSON.stringify(s))}')">edit</button>
                       `
@@ -193,19 +193,43 @@
     let post=JSON.parse(decodeURIComponent(postObject))
     console.log(post)
     alert("delete")
-    return
 
-    document.getElementById("post-model-submit").innerHTML ="Updata"
-    document.getElementById("post-id").value=post.id
-    document.getElementById("post-modal-title").innerHTML="Edit post"
-    document.getElementById("Post-titleInput").value=post.title  
-    document.getElementById("PostTitleInput").value=post.body
 
-    let postModel=new bootstrap.Modal(document.getElementById("Create-post-Modal"),{})
+    let postModel=new bootstrap.Modal(document.getElementById("Delete-post-Modal"),{})
     postModel.toggle()
 
 
 
+    }
+
+    function ConfirmPostDelete() {
+
+
+        
+       const UserName= document.getElementById("usernameinput").value
+       const password=document.getElementById("passwordinput").value
+
+       const params=
+        {
+            "username" : UserName,
+            "password" : password
+        }
+       
+       axios.post("https://tarmeezacademy.com/api/v1/login",params)
+       .then((res)=>{
+            localStorage.setItem("token",res.data.token)
+            localStorage.setItem("currentUser",JSON.stringify(res.data.user))
+
+            const modal= document.getElementById("LoginModal")
+            const modalInsrance = bootstrap.Modal.getInstance(modal)
+            modalInsrance.hide()
+            setupUI()
+            showAlert("Logged in successfully","success")
+            
+
+        })
+       console.log(UserName,password)
+        alert("confirm")
     }
     
 
