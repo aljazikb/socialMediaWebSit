@@ -26,7 +26,7 @@
                    if(isMyPost){
                       butttonContent=
                       `
-                      <button class="btn btn-danger" style="margin-left:5pxs ;float:right" onclick="deletepostbtnclicked('${encodeURIComponent(JSON.stringify(s))}')">delete</button>
+                      <button class="btn btn-danger" style="margin-left:5px;float:right;" onclick="deletepostbtnclicked('${encodeURIComponent(JSON.stringify(s))}')">delete</button>
 
                       <button class="btn btn-secondary" style="float:right" onclick="editpostbtnclicked('${encodeURIComponent(JSON.stringify(s))}')">edit</button>
                       `
