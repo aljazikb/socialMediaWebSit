@@ -96,7 +96,7 @@
     let post=JSON.parse(decodeURIComponent(postObject))
     console.log(post)
 
-    document.getElementById("is-edit-post-input").value="true"
+    document.getElementById("post-id").value=post.id
     document.getElementById("post-modal-title").innerHTML="Edit post"
     document.getElementById("Post-titleInput").value=post.title  
     document.getElementById("PostTitleInput").value=post.body
@@ -108,7 +108,11 @@
 
    
    function CreateNewPostBtnClicked(){
+
+        let postid=document.getElementById("post-id").value
+        let isCreate = postid==null ||postid==""
         
+
         const title= document.getElementById("Post-titleInput").value
         const body =document.getElementById("PostTitleInput").value
         const Image=document.getElementById("Post-ImageInput").files[0]
@@ -120,8 +124,10 @@
         forDate.append("title",title)
         forDate.append("image",Image)
 
-       
-       axios.post("https://tarmeezacademy.com/api/v1/posts", forDate,{
+        let url=""
+       if(isCreate==true){
+            url="https://tarmeezacademy.com/api/v1/posts"
+            axios.post(url, forDate,{
             headers:{
                 "Content-type": "multipart/form-data",
                 "authorization":`Bearer ${token}`
@@ -141,6 +147,33 @@
              const message=error.response.data.message
              showAlert(message,"danger")
         })
-     
+        
+       }else{
+            forDate.append("_method","put")
+
+            url=`https://tarmeezacademy.com/api/v1/posts/${postid}`
+            axios.post(url, forDate,{
+            headers:{
+                "Content-type": "multipart/form-data",
+                "authorization":`Bearer ${token}`
+            }
+       })
+       .then((res)=>{
+
+            const modal= document.getElementById("Create-post-Modal")
+            const modalInsrance = bootstrap.Modal.getInstance(modal)
+            modalInsrance.hide()
+            showAlert("Edit Has Been successfully change","success")
+           
+            
+           console.log(res)
+
+        }).catch((error)=>{
+             const message=error.response.data.message
+             showAlert(message,"danger")
+        })
+       }
+
+      
     
     }
