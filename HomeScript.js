@@ -14,8 +14,19 @@
                     document.getElementById("posts").innerHTML=""
                 }
             
+                
 
                 for(let s of obs){
+
+
+                    //show or hide edit button
+                    let user= getCurrentUser()
+                    let isMyPost= user!=null && s.author.id ==user.id
+                   let butttonContent=``
+
+                   if(isMyPost){
+                      butttonContent=`<button class="btn btn-secondary" style="float:right" onclick="editpostbtnclicked('${encodeURIComponent(JSON.stringify(s))}')">edit</button>`
+                   }
                 
                     let  postTitle=""
                     if(s.title!=null){
@@ -29,7 +40,7 @@
                                 <h5 class="card-header ">
                                     <img class="rounded-circle border border-2" src="${ typeof s.author.profile_image=="string"?s.author.profile_image:""}" alt="" style="width :40px; height: 40px; ">
                                     <b> ${s.author.username}</b>
-                                    <button class="btn btn-secondary" style="float:right" onclick="editpostbtnclicked('${encodeURIComponent(JSON.stringify(s))}')">edit</button>
+                                        ${butttonContent}
                                 </h5>
                                 <div class="card-body" onClick="postClicked(${s})" style="cursor: pointer">
                                     <h5 class="card-title">
@@ -93,9 +104,11 @@
 
 
    function editpostbtnclicked(postObject){
+
     let post=JSON.parse(decodeURIComponent(postObject))
     console.log(post)
 
+    document.getElementById("post-model-submit").innerHTML ="Updata"
     document.getElementById("post-id").value=post.id
     document.getElementById("post-modal-title").innerHTML="Edit post"
     document.getElementById("Post-titleInput").value=post.title  
@@ -127,7 +140,14 @@
         let url=""
        if(isCreate==true){
             url="https://tarmeezacademy.com/api/v1/posts"
-            axios.post(url, forDate,{
+        
+       }else{
+            forDate.append("_method","put")
+
+            url=`https://tarmeezacademy.com/api/v1/posts/${postid}`
+    
+       }
+           axios.post(url, forDate,{
             headers:{
                 "Content-type": "multipart/form-data",
                 "authorization":`Bearer ${token}`
@@ -147,33 +167,20 @@
              const message=error.response.data.message
              showAlert(message,"danger")
         })
-        
-       }else{
-            forDate.append("_method","put")
 
-            url=`https://tarmeezacademy.com/api/v1/posts/${postid}`
-            axios.post(url, forDate,{
-            headers:{
-                "Content-type": "multipart/form-data",
-                "authorization":`Bearer ${token}`
-            }
-       })
-       .then((res)=>{
-
-            const modal= document.getElementById("Create-post-Modal")
-            const modalInsrance = bootstrap.Modal.getInstance(modal)
-            modalInsrance.hide()
-            showAlert("Edit Has Been successfully change","success")
-           
-            
-           console.log(res)
-
-        }).catch((error)=>{
-             const message=error.response.data.message
-             showAlert(message,"danger")
-        })
-       }
-
-      
-    
     }
+
+    function addBtnClicked(){
+
+    document.getElementById("post-model-submit").innerHTML ="Create"
+    document.getElementById("post-id").value=""
+    document.getElementById("post-modal-title").innerHTML="Create New post"
+    document.getElementById("Post-titleInput").value=""
+    document.getElementById("PostTitleInput").value=""
+
+    let postModel=new bootstrap.Modal(document.getElementById("Create-post-Modal"),{})
+    postModel.toggle()
+
+
+    }
+    
