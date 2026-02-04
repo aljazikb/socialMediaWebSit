@@ -1,5 +1,4 @@
- getPosts()
-
+    getPosts()
 
     function getPosts( page = 1, reload=true ){
 
@@ -194,7 +193,7 @@
     console.log(post)
     alert("delete")
 
-
+    document.getElementById("delete-post-id-input").value=post.id
     let postModel=new bootstrap.Modal(document.getElementById("Delete-post-Modal"),{})
     postModel.toggle()
 
@@ -203,20 +202,16 @@
     }
 
     function ConfirmPostDelete() {
-
-
         
+       const postid= document.getElementById("delete-post-id-input").value
        const UserName= document.getElementById("usernameinput").value
        const password=document.getElementById("passwordinput").value
 
-       const params=
-        {
-            "username" : UserName,
-            "password" : password
-        }
        
-       axios.post("https://tarmeezacademy.com/api/v1/login",params)
+       axios.delete(`https://tarmeezacademy.com/api/v1/posts/${postid}`)
        .then((res)=>{
+        console.log(res)
+        
             localStorage.setItem("token",res.data.token)
             localStorage.setItem("currentUser",JSON.stringify(res.data.user))
 
@@ -229,7 +224,7 @@
 
         })
        console.log(UserName,password)
-        alert("confirm")
+        
     }
     
 
