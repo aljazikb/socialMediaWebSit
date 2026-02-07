@@ -6,15 +6,19 @@
 
     function getCurrentUserId(){
 
-    const urlParms= new URLSearchParams(window.location.search)
-    const id=urlParms.get("userid")
-    return id
+        const urlParms= new URLSearchParams(window.location.search)
+        const id=urlParms.get("userid")
+        return id
 
     }
 
  function getUser(){
 
-     const id =  getCurrentUserId()
+     const id = 16
+      if(!id){
+        console.error("userid غير موجود في الرابط")
+        return
+    }
 
     
      axios.get(`https://tarmeezacademy.com/api/v1/users/${id}`)
@@ -43,7 +47,8 @@
 
  function getPosts(){
 
-        const id=  getCurrentUserId()
+        const id=  16
+         if(!id) return
         
         axios.get(`https://tarmeezacademy.com/api/v1/users/${id}/posts`)
             .then((response)=>{
@@ -83,7 +88,7 @@
 
                                     <div>
                                     
-                                    <img class="rounded-circle border border-2" src="${ typeof s.author.profile_image=="string"?s.author.profile_image:""}" alt="" style="width :40px; height: 40px; ">
+                                    <img class="rounded-circle border border-2"  src="${s.author.profile_image ? s.author.profile_image : ''}" alt="" style="width :40px; height: 40px; ">
                                     <b> ${s.author.username}</b>
                                     </div>
                                         ${butttonContent}
