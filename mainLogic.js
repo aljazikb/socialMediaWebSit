@@ -306,6 +306,134 @@
     }
 
 
+    function addBtnClicked(){
+
+        document.getElementById("post-model-submit").innerHTML ="Create"
+        document.getElementById("post-id").value=""
+        document.getElementById("post-modal-title").innerHTML="Create New post"
+        document.getElementById("Post-titleInput").value=""
+        document.getElementById("PostTitleInput").value=""
+
+        let postModel=new bootstrap.Modal(document.getElementById("Create-post-Modal"),{})
+        postModel.toggle()
+        }
+
+
+    function  deletepostbtnclicked(postObject){
+
+        let post=JSON.parse(decodeURIComponent(postObject))
+        console.log(post)
+        alert("delete")
+
+        document.getElementById("delete-post-id-input").value=post.id
+        let postModel=new bootstrap.Modal(document.getElementById("Delete-post-Modal"),{})
+        postModel.toggle()
+
+        }
+
+
+    function ConfirmPostDelete() {
+        
+       const postid= document.getElementById("delete-post-id-input").value
+       const token=localStorage.getItem("token")
+     
+
+       axios.delete(`https://tarmeezacademy.com/api/v1/posts/${postid}`,{
+            headers:{
+                "Content-type": "multipart/form-data",
+                "authorization":`Bearer ${token}`
+            }
+       })
+       .then((res)=>{
+
+            const modal= document.getElementById("Delete-post-Modal")
+            const modalInsrance = bootstrap.Modal.getInstance(modal)
+            modalInsrance.hide()
+            showAlert("The post has been deleted","success")
+            getPosts()
+             
+
+        }).catch((error)=>{
+            const message=error.response.data.message
+             showAlert(message,"danger")
+
+        })
+      
+        
+    }
+
+
+     function editpostbtnclicked(postObject){
+
+        let post=JSON.parse(decodeURIComponent(postObject))
+        console.log(post)
+
+        document.getElementById("post-model-submit").innerHTML ="Updata"
+        document.getElementById("post-id").value=post.id
+        document.getElementById("post-modal-title").innerHTML="Edit post"
+        document.getElementById("Post-titleInput").value=post.title  
+        document.getElementById("PostTitleInput").value=post.body
+
+        let postModel=new bootstrap.Modal(document.getElementById("Create-post-Modal"),{})
+        postModel.toggle()
+
+   }
+
+
+    
+   function CreateNewPostBtnClicked(){
+
+        let postid=document.getElementById("post-id").value
+        let isCreate = postid==null ||postid==""
+        
+
+        const title= document.getElementById("Post-titleInput").value
+        const body =document.getElementById("PostTitleInput").value
+        const Image=document.getElementById("Post-ImageInput").files[0]
+        const token=localStorage.getItem("token")
+        
+        //Type of forDate instead of JSON object. Beacuse we used file of image
+        let forDate=new FormData()
+        forDate.append("body",body)
+        forDate.append("title",title)
+        forDate.append("image",Image)
+
+        let url=""
+       if(isCreate==true){
+            url="https://tarmeezacademy.com/api/v1/posts"
+        
+       }else{
+            forDate.append("_method","put")
+
+            url=`https://tarmeezacademy.com/api/v1/posts/${postid}`
+    
+       }
+           axios.post(url, forDate,{
+            headers:{
+                "Content-type": "multipart/form-data",
+                "authorization":`Bearer ${token}`
+            }
+       })
+       .then((res)=>{
+
+            const modal= document.getElementById("Create-post-Modal")
+            const modalInsrance = bootstrap.Modal.getInstance(modal)
+            modalInsrance.hide()
+            showAlert("New Post Has Been Created","success")
+            getPosts()
+           
+            
+           console.log(res)
+
+        }).catch((error)=>{
+             const message=error.response.data.message
+             showAlert(message,"danger")
+        })
+
+    }
+
+
+
 
 
    

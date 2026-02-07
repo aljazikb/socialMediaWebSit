@@ -200,7 +200,7 @@
                     <div class="row">
                         <!--USER IMAGE COL-->
                         <div class="col-2">
-                            <img id="header-image" src="./placeholders/Screenshot_16-1-2026_0272_.jpeg" style="width: 120px;height: 120px; border-radius: 200px !important">
+                            <img id="header-image"  src="./placeholders/Screenshot_16-1-2026_0272_.jpeg" style="width: 120px;height: 120px; border-radius: 200px !important">
                         </div>
                         <!--// USER IMAGE COL //---->
 
@@ -236,26 +236,27 @@
                 </div>
             </div>
         </div>
+
         <!--// MAIN INFO //-->
         <!-- POSTS TITLE -->
-         <div class="row mt-5">
-            <h1>Aljazi Posts</h1>
+         <div class="row mt-5" >
+            <h1><span id="name-posts">Aljazi Posts</span></h1>
          </div>
         <!---// POSTS TITLE //--->
 
         <!-- POSTS -->
-            <div class="row">
+            <div class="row" id="user-posts">
                 <!--POST -->
                 <div class="card shadow-lg my-5">
 
                                 <h5 class="card-header ">
                                     <img class="rounded-circle border border-2" src="./placeholders/Screenshot_16-1-2026_0272_.jpeg" alt="" style="width :40px; height: 40px; ">
-                                    <b>aljazi 23</b>
-                                       
+                                    <b>aljazi 23</b>    
                                 </h5>
+
                                 <div class="card-body" onClick="postClicked(${s})" style="cursor: pointer">
                                     <h5 class="card-title">
-                                    <img class="w-100" src="${typeof s.image=="string"?s.image:""}" alt="" >
+                                    <img class="w-100" src="${typeof s.image === 'string' ? s.image : ''}" alt="" >
                                     <h6 style="color: gray;" class="mt-1 ">${s.created_at}</h6>
                                     </h5>
                                 <h5>
@@ -287,10 +288,10 @@
                 <!-- //POST//-->
             </div>
         <!--// POSTS //-->
-
     </div>
     </div>
     </div>
+    
 
 </body>
 
