@@ -433,6 +433,14 @@
     }
 
 
+    function profileCliked(){
+        
+        const user=getCurrentUser()
+        const userId=user.id
+        window.location=`profile.html?userid=${userId}`
+    }
+
+
 
 
 

@@ -2,9 +2,22 @@
     getUser()
     getPosts() 
 
+
+
+    function getCurrentUserId(){
+
+    const urlParms= new URLSearchParams(window.location.search)
+    const id=urlParms.get("userid")
+    return id
+
+    }
+
  function getUser(){
 
-    axios.get(`https://tarmeezacademy.com/api/v1/users/9988`)
+     const id =  getCurrentUserId()
+
+    
+     axios.get(`https://tarmeezacademy.com/api/v1/users/${id}`)
 
     .then((response)=>{
         const user= response.data.data
@@ -30,7 +43,8 @@
 
  function getPosts(){
 
-        const id="9988"
+        const id=  getCurrentUserId()
+        
         axios.get(`https://tarmeezacademy.com/api/v1/users/${id}/posts`)
             .then((response)=>{
 

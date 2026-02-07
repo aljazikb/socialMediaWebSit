@@ -42,7 +42,7 @@
                     <div class="card shadow-lg my-5">
 
                                 <h5 class="card-header ">
-                                    <span  onclick="userClicked()" style="cursor:pointer">
+                                    <span  onclick="userClicked(${s.id})" style="cursor:pointer">
                                     <img class="rounded-circle border border-2" src="${ typeof s.author.profile_image=="string"?s.author.profile_image:""}" alt="" style="width :40px; height: 40px; ">
                                     <b> ${s.author.username}</b>
                                     </span>
@@ -109,8 +109,9 @@
    }
 
 
-   function userClicked(){
-     window.location="profile.html"
+   function userClicked(userId){
+     
+     window.location=`profile.html?userid=${userId}`
     }
 
   
