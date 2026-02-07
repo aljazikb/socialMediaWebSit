@@ -29,7 +29,8 @@
 
 
  function getPosts(){
-         const id="9988"
+
+        const id="9988"
         axios.get(`https://tarmeezacademy.com/api/v1/users/${id}/posts`)
             .then((response)=>{
 
@@ -64,11 +65,15 @@
 
                     <div class="card shadow-lg my-5">
 
-                                <h5 class="card-header ">
+                                <div class="card-header ">
+
+                                    <div>
+                                    
                                     <img class="rounded-circle border border-2" src="${ typeof s.author.profile_image=="string"?s.author.profile_image:""}" alt="" style="width :40px; height: 40px; ">
                                     <b> ${s.author.username}</b>
+                                    </div>
                                         ${butttonContent}
-                                </h5>
+                                </div>
                                 <div class="card-body" onClick="postClicked(${s})" style="cursor: pointer">
                                     <h5 class="card-title">
                                     <img class="w-100" src="${typeof s.image=="string"?s.image:""}" alt="" >
