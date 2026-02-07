@@ -1,10 +1,7 @@
 
 
    setupUI() 
-  
-
    
-
    let currentPage=1
    let lastPage=1
 
@@ -22,7 +19,7 @@
    })
     // ========infinit scroll============= //
 
-/*
+
    function getPost( page = 1, reload=true ){
 
         axios.get(`https://tarmeezacademy.com/api/v1/posts?limit=5&page=${page}`)
@@ -105,7 +102,7 @@
             console.error("error")
             })
 
-   }*/
+   }
     function loginBtnClicked(){
 
        const UserName= document.getElementById("usernameinput").value
@@ -246,35 +243,45 @@
     
     function setupUI(){
        
-    const token = localStorage.getItem("token");
+        const token = localStorage.getItem("token");
 
-    const loggedIndiv = document.getElementById("loggedIndiv");
-    const logout = document.getElementById("logoutdiv");
-    const Post=document.getElementById("AddButton");
+        const loggedIndiv = document.getElementById("loggedIndiv");
+        const logout = document.getElementById("logoutdiv");
+        const Post=document.getElementById("AddButton");
 
-    if (token == null) { // user is a guest
+        if (token == null) { // user is a guest
+            
+            if(Post!=null){
+                Post.style.setProperty("display", "none", "important");
+            }
+            loggedIndiv.style.setProperty("display", "flex", "important");
+            logout.style.setProperty("display", "none", "important");
         
-        if(Post!=null){
-             Post.style.setProperty("display", "none", "important");
-        }
-        loggedIndiv.style.setProperty("display", "flex", "important");
-        logout.style.setProperty("display", "none", "important");
-       
 
-    } else { // user is logged in
-        if(Post!=null){
-              Post.style.setProperty("display", "flex", "important");
-        }
-        loggedIndiv.style.setProperty("display", "none", "important");
-        logout.style.setProperty("display", "flex", "important");
-       
-         // <b id="navUserName">@al</b>//
-            const user=getCurrentUser()
-        document.getElementById("navUserName").innerHTML= user.username
-        document.getElementById("navImage").src =user.profile_image
+        } else { // user is logged in
+            if(Post!=null){
+                Post.style.setProperty("display", "flex", "important");
+            }
+            loggedIndiv.style.setProperty("display", "none", "important");
+            logout.style.setProperty("display", "flex", "important");
+        
+            // <b id="navUserName">@al</b>//
+            const user = getCurrentUser();
 
+            if (user) {
+                document.getElementById("navUserName").innerHTML = user.username;
+                document.getElementById("navImage").src = user.profile_image;
+            } else {
+                
+                localStorage.removeItem("token");
+                setupUI();
+}
+                //const user=getCurrentUser()
+           // document.getElementById("navUserName").innerHTML= user.username
+           // document.getElementById("navImage").src =user.profile_image
+
+            }
         }
-    }
 
     function getCurrentUser(){
 

@@ -163,6 +163,7 @@
             const modalInsrance = bootstrap.Modal.getInstance(modal)
             modalInsrance.hide()
             showAlert("New Post Has Been Created","success")
+            getPosts()
            
             
            console.log(res)
@@ -186,44 +187,47 @@
     postModel.toggle()
     }
 
+
     function  deletepostbtnclicked(postObject){
 
+        let post=JSON.parse(decodeURIComponent(postObject))
+        console.log(post)
+        alert("delete")
 
-    let post=JSON.parse(decodeURIComponent(postObject))
-    console.log(post)
-    alert("delete")
+        document.getElementById("delete-post-id-input").value=post.id
+        let postModel=new bootstrap.Modal(document.getElementById("Delete-post-Modal"),{})
+        postModel.toggle()
 
-    document.getElementById("delete-post-id-input").value=post.id
-    let postModel=new bootstrap.Modal(document.getElementById("Delete-post-Modal"),{})
-    postModel.toggle()
+        }
 
-
-
-    }
 
     function ConfirmPostDelete() {
         
        const postid= document.getElementById("delete-post-id-input").value
-       const UserName= document.getElementById("usernameinput").value
-       const password=document.getElementById("passwordinput").value
+       const token=localStorage.getItem("token")
+     
 
-       
-       axios.delete(`https://tarmeezacademy.com/api/v1/posts/${postid}`)
+       axios.delete(`https://tarmeezacademy.com/api/v1/posts/${postid}`,{
+            headers:{
+                "Content-type": "multipart/form-data",
+                "authorization":`Bearer ${token}`
+            }
+       })
        .then((res)=>{
-        console.log(res)
-        
-            localStorage.setItem("token",res.data.token)
-            localStorage.setItem("currentUser",JSON.stringify(res.data.user))
 
-            const modal= document.getElementById("LoginModal")
+            const modal= document.getElementById("Delete-post-Modal")
             const modalInsrance = bootstrap.Modal.getInstance(modal)
             modalInsrance.hide()
-            setupUI()
-            showAlert("Logged in successfully","success")
-            
+            showAlert("The post has been deleted","success")
+            getPosts()
+             
+
+        }).catch((error)=>{
+            const message=error.response.data.message
+             showAlert(message,"danger")
 
         })
-       console.log(UserName,password)
+      
         
     }
     
