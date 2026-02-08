@@ -1,32 +1,28 @@
 
 
-   setupUI() 
-   
-   let currentPage=1
-   let lastPage=1
-
-   // ===========infinit scroll============= //
-   window.addEventListener("scroll",function(){
-
-     const endOfPage = window.innerHeight + window.pageYOffset>= document.body.offsetHeight
-     
-     if(endOfPage && currentPage<lastPage){
- 
-        getPosts(currentPage+1,false)
-        currentPage++ 
-     }
-     console.log(endOfPage)
-   })
-    // ========infinit scroll============= //
+    setupUI() 
+    getPosts()
 
 
-   function getPost( page = 1, reload=true ){
+     function toggleloader(show=true){
+        if(show){
+        document.getElementById("loader").style.visibility = 'visible'
+        }else{
+        document.getElementById("loader").style.visibility ='hidden'
 
-        axios.get(`https://tarmeezacademy.com/api/v1/posts?limit=5&page=${page}`)
+        }
+
+   }
+    
+
+
+
+   function getPosts( page = 1, reload=true ){
+
+       toggleloader(true)
+       axios.get(`https://tarmeezacademy.com/api/v1/posts?limit=5&page=${page}`)
             .then((response)=>{
-
-              
-
+                toggleloader(false)
                 let obs=response.data.data 
                 lastPage = response.data.meta.last_page
                 if (reload){
