@@ -4,7 +4,7 @@
     getPosts()
 
 
-     function toggleloader(show=true){
+    function toggleloader(show=true){
         if(show){
         document.getElementById("loader").style.visibility = 'visible'
         }else{
@@ -109,7 +109,7 @@
             "username" : UserName,
             "password" : password
         }
-       
+       toggleloader(true)
        axios.post("https://tarmeezacademy.com/api/v1/login",params)
        .then((res)=>{
             localStorage.setItem("token",res.data.token)
@@ -122,13 +122,18 @@
             showAlert("Logged in successfully","success")
             
 
+        }).catch((error)=>{
+            const message = error.res.data.message
+            showAlert(message,"danger")
+        }).finally(()=>{
+            toggleloader(false)
         })
-       console.log(UserName,password)
+       //console.log(UserName,password)
         
     }
 
     function RegisterBtnClicked(){
-        console.log("ho")
+       // console.log("ho")
 
         const UserName= document.getElementById("RegisterUsernameinput").value
        const password=document.getElementById("RegisterPasswordinput").value
@@ -142,7 +147,7 @@
         forDate.append("name",Name)
         forDate.append("image",image)
 
-
+        toggleloader(true)
        axios.post("https://tarmeezacademy.com/api/v1/register",forDate,{
             headers:{
                  "Content-type": "multipart/form-data",
@@ -165,6 +170,9 @@
         }).catch((error)=>{
             const message = error.response.data.message
             showAlert(message,"danger")
+
+        }).finally(()=>{
+            toggleloader(false)
         })
       
         
@@ -184,7 +192,7 @@
         forDate.append("title",title)
         forDate.append("image",Image)
 
-       
+       toggleloader(true)
        axios.post("https://tarmeezacademy.com/api/v1/posts", forDate,{
             headers:{
                 "Content-type": "multipart/form-data",
@@ -204,6 +212,9 @@
         }).catch((error)=>{
              const message=error.response.data.message
              showAlert(message,"danger")
+
+        }).finally(()=>{
+            toggleloader(false)
         })
      
     
