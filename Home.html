@@ -4,12 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>homePage</title>
 
     <!-- IMPORT BOOTSTRAP & STYLE -->
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="./node_modules/axios/dist/axios.min.js"></script>
+
+
+        <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JS Bundle (مع Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     
 </head>
 
@@ -26,9 +36,12 @@
         font-size: 50px;
         color: white;
         border-radius: 100px;
-        text-align: center;
         cursor: pointer;
         box-shadow: 0px 10px 10px rgba(0,0,0,.3);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     /* LOADER       */
@@ -276,7 +289,7 @@
                 </div>
 
                 <div id="logoutdiv" class="d-flex  justify-content-end" style="display: none;align-items: center;">
-                    <img id="navImage" class="rounded-circle" style="width: 40px; height: 40px;" src="./placeholders/Screenshot_16-1-2026_0272_.jpeg">
+                    <img id="navImage" class="rounded-circle" style="width: 40px; height: 40px;" src="">
                     <b id="navUserName">@</b>
 
                     <button onclick="logout()" id="logout-btu"type="button" data-bs-toggle="modal" class="btn btn-outline-danger mx-2">Logout</button>
@@ -306,12 +319,12 @@
             <div class="card shadow-lg my-5">
 
                 <h5 class="card-header ">
-                    <img class="rounded-circle border border-2" src="./progile-pics/starry-night-cypress-1.png" alt="" style="width :40px; height: 40px; ">
+                    <img class="rounded-circle border border-2" src="" alt="" style="width :40px; height: 40px; ">
                     <b> @aljazi</b>
                 </h5>
                 <div class="card-body">
                     <h5 class="card-title">
-                     <img class="w-100" src="./placeholders/Screenshot_16-1-2026_0272_.jpeg" alt="" >
+                     <img class="w-100" src="" alt="" >
                      <h6 style="color: gray;" class="mt-1 ">2 min ago</h6>
                     </h5>
                    <h5>
